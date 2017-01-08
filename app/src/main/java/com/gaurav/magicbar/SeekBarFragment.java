@@ -11,7 +11,7 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 
 public class SeekBarFragment extends Fragment implements SeekBar.OnSeekBarChangeListener{
-    private static EditText edittext;
+    private EditText edittext;
     private FragmentCommunicationnListener mListener;
 
     @Override
@@ -44,16 +44,14 @@ public class SeekBarFragment extends Fragment implements SeekBar.OnSeekBarChange
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if(!edittext.getText().toString().equals(""))
-            mListener.onButtonClick(progress,
-                edittext.getText().toString());
-        else
-            Toast.makeText(getContext(),"Please Enter Your Name.", Toast.LENGTH_SHORT).show();
+            mListener.onButtonClick(progress,edittext.getText().toString());
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-
+        if(edittext.getText().toString().equals("")){
+            Toast.makeText(getContext(),"Please Enter Your Name.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
